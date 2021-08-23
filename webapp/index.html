@@ -5,7 +5,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>A Basic HTML5 Template</title>
+  <title>Ethereum Web App</title>
   <script>
     if (typeof window.ethereum === 'undefined') {
       alert("No ethereum wallet found");
@@ -29,17 +29,13 @@
     const connectWalletBtn = document.querySelector('.connectWallet');
 
     connectWalletBtn.addEventListener('click', () => {
-      if (window.ethereum.selectedAddress !== null) {
-        alert(`Already connected to ${window.ethereum.selectedAddress} on ${chain_ids[window.ethereum.chainId]}`);
-        return;
-      }
       ethereum.request({ method: 'eth_requestAccounts' })
         .then(accounts => {
           console.log(accounts);
           alert(`Connected to account ${window.ethereum.selectedAddress} on ${chain_ids[window.ethereum.chainId]}`);
         })
-        .catch((err) => {
-          alert(`[${err.code}] ${err.message}`);
+        .catch((error) => {
+          alert(`[${error.code}] ${error.message}`);
         })
     })
   </script>
