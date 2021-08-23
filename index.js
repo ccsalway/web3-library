@@ -1,9 +1,9 @@
 global.Web3 = require('web3');
 const Erc20 = require('./lib/erc20.js');
+const config = require('./config.js');
 const chain = require('./lib/blockchain.js');
 const wallet = require('./lib/wallet.js');
 const txns = require('./lib/transactions.js');
-const config = require('./config.js');
 
 
 // global.web3 = new Web3(window.ethereum);

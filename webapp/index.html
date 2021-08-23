@@ -1,0 +1,48 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>A Basic HTML5 Template</title>
+  <script>
+    if (typeof window.ethereum === 'undefined') {
+      alert("No ethereum wallet found");
+    }
+    var chain_ids = {
+      '0x1': 'mainnet',
+      '0x3': 'ropsten',
+      '0x4': 'rinkeby',
+      '0x5': 'goerli',
+      '0x2a': 'kovan'
+    }
+  </script>
+</head>
+
+<body>
+  <!-- your content here... -->
+  <button class="connectWallet">Enable Ethereum</button>
+  <script>
+    const ethereum = window.ethereum;
+
+    const connectWalletBtn = document.querySelector('.connectWallet');
+
+    connectWalletBtn.addEventListener('click', () => {
+      if (window.ethereum.selectedAddress !== null) {
+        alert(`Already connected to ${window.ethereum.selectedAddress} on ${chain_ids[window.ethereum.chainId]}`);
+        return;
+      }
+      ethereum.request({ method: 'eth_requestAccounts' })
+        .then(accounts => {
+          console.log(accounts);
+          alert(`Connected to account ${window.ethereum.selectedAddress} on ${chain_ids[window.ethereum.chainId]}`);
+        })
+        .catch((err) => {
+          alert(`[${err.code}] ${err.message}`);
+        })
+    })
+  </script>
+</body>
+
+</html>
